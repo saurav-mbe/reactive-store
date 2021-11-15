@@ -23,13 +23,13 @@ export interface Store<T> extends SafeReactiveObject<T> {
     onComplete: (fn: FuncSubscriber<T>) => void;
 }
 export type OperatorSourceFn = (source: ReactiveObject<any>) => ReactiveObject<any>;
-export type Operator<T> = (opFunc: (value: T) => ReactiveObject<T>) => any;
+export type Operator<T> = (opFunc: (value: T) => ReactiveObject<T> | unknown) => any;
 /**
  * Creates a reactive store
  * @param  {T} initialValue?
  * @returns Store
  */
-export const StoreValue: <T>(initialValue?: T | undefined) => Store<T>;
+export const StoreValue: <T>(initialValue?: T) => Store<T>;
 /**
  * @param  {<T>(value:T} opFunc
  * @returns OperatorSourceFn

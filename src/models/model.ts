@@ -31,4 +31,4 @@ export interface Store<T> extends SafeReactiveObject<T> {
 
 export type OperatorSourceFn = (source: ReactiveObject<any>) => ReactiveObject<any>;
 
-export type Operator<T> = (opFunc: (value: T) => ReactiveObject<T>) => any;
+export type Operator<T> = (opFunc: (value: T) => ReactiveObject<T> | unknown) => any;

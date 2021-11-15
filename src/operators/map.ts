@@ -6,7 +6,7 @@ import { StoreValue } from "../store/storeValue";
  * @param  {<T>(value:T} opFunc
  * @returns OperatorSourceFn
  */
-export const map: Operator<unknown> = (opFunc: <T>(value: T) => unknown): OperatorSourceFn => {
+export const map: Operator<unknown> = (opFunc: <T>(value: T) => unknown) => {
     return (source: ReactiveObject<unknown>) => {
         const mapSource = StoreValue();
 
