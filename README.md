@@ -36,4 +36,4 @@ newObs.subscribe(c => console.log(c));
 
 ```
 
-There is only partial type support for the library right now, correct type inference for operatos will be added.
+There is only partial type support for the library right now.
