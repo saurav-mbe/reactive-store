@@ -103,7 +103,7 @@ export const StoreValue = <T>(initialValue?: T): Store<T> => {
         if (!args.length) {
             return store;
         }
-        return args.reduceRight((y, f) => f(y as any), store) as any;
+        return args.reduce((y, f) => f(y as any), store) as any;
     }
 
     /* function lift(operator: any) {

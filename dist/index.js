@@ -17,91 +17,79 @@ function $parcel$exportWildcard(dest, source) {
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
-var $b32915272a56adda$exports = {};
+var $04e09b9be04c0484$exports = {};
 
-$parcel$export($b32915272a56adda$exports, "StoreValue", function () { return $b32915272a56adda$export$cd5fa4ab807ba876; });
-var $3395cd47b6305262$export$f6e2535fb5126e54 = function(val) {
-    return typeof val === "function";
-};
-var $3395cd47b6305262$export$fce6876652108ab = function(val) {
-    return typeof val === "undefined";
-};
+$parcel$export($04e09b9be04c0484$exports, "StoreValue", () => $04e09b9be04c0484$export$cd5fa4ab807ba876);
+const $559abe024f48324b$export$f6e2535fb5126e54 = (val)=>typeof val === "function"
+;
+const $559abe024f48324b$export$fce6876652108ab = (val)=>typeof val === "undefined"
+;
 
 
-var $b32915272a56adda$export$cd5fa4ab807ba876 = function(initialValue) {
-    var _val;
-    var _callbacks = [];
-    var _errorCallbacks = [];
-    var _onCompleteCallbacks = [];
-    var _innerSubscriptions = [];
-    var subscriptions = [];
-    var subscribe = function(cb, error) {
+const $04e09b9be04c0484$export$cd5fa4ab807ba876 = (initialValue)=>{
+    let _val;
+    let _callbacks = [];
+    let _errorCallbacks = [];
+    let _onCompleteCallbacks = [];
+    let _innerSubscriptions = [];
+    const subscriptions = [];
+    const subscribe = (cb, error)=>{
         cb && _callbacks.push(cb);
         error && _errorCallbacks.push(error);
-        var subscription = {
+        const subscription = {
             errId: error,
             subId: cb || undefined
         };
         subscriptions.push(subscription);
         cb === null || cb === void 0 ? void 0 : cb.call(null, _val);
         return {
-            unsubcsribe: function() {
-                return unsubscribe(subscription);
-            }
+            unsubcsribe: ()=>unsubscribe(subscription)
         };
     };
-    var unsubscribe = function(subscription) {
-        _callbacks = _callbacks.filter(function(c) {
-            return c !== subscription.subId;
-        });
-        _errorCallbacks = _errorCallbacks.filter(function(c) {
-            return c !== subscription.errId;
-        });
-        _innerSubscriptions.forEach(function(c) {
-            return $3395cd47b6305262$export$f6e2535fb5126e54(c) ? c() : c.unsubcsribe();
-        });
+    const unsubscribe = (subscription)=>{
+        _callbacks = _callbacks.filter((c)=>c !== subscription.subId
+        );
+        _errorCallbacks = _errorCallbacks.filter((c)=>c !== subscription.errId
+        );
+        _innerSubscriptions.forEach((c)=>$559abe024f48324b$export$f6e2535fb5126e54(c) ? c() : c.unsubcsribe()
+        );
         _innerSubscriptions = [];
     };
-    var next = function(val) {
+    const next = (val)=>{
         _val = val;
-        _callbacks.forEach(function(cb) {
-            return cb.call(null, _val);
-        });
+        _callbacks.forEach((cb)=>cb.call(null, _val)
+        );
     };
-    var complete = function() {
-        _callbacks.forEach(function(cb) {
-            return unsubscribe({
+    const complete = ()=>{
+        _callbacks.forEach((cb)=>unsubscribe({
                 subId: cb
-            });
-        });
-        _onCompleteCallbacks.forEach(function(cb) {
-            return cb.call(null);
-        });
+            })
+        );
+        _onCompleteCallbacks.forEach((cb)=>cb.call(null)
+        );
         _onCompleteCallbacks = [];
-        _innerSubscriptions.forEach(function(c) {
-            return $3395cd47b6305262$export$f6e2535fb5126e54(c) ? c() : c.unsubcsribe();
-        });
+        _innerSubscriptions.forEach((c)=>$559abe024f48324b$export$f6e2535fb5126e54(c) ? c() : c.unsubcsribe()
+        );
         _innerSubscriptions = [];
     };
-    var onComplete = function(cb) {
+    const onComplete = (cb)=>{
         _onCompleteCallbacks.push(cb);
     };
-    var addInnerSubscriber = function(subscriber) {
+    const addInnerSubscriber = (subscriber)=>{
         _innerSubscriptions.push(subscriber);
     };
-    var cancelInnerSubscription = function() {
-        _innerSubscriptions.forEach(function(c) {
-            return $3395cd47b6305262$export$f6e2535fb5126e54(c) ? c() : c.unsubcsribe();
-        });
+    const cancelInnerSubscription = ()=>{
+        _innerSubscriptions.forEach((c)=>$559abe024f48324b$export$f6e2535fb5126e54(c) ? c() : c.unsubcsribe()
+        );
     // _innerSubscriptions = [];
     };
-    var asObservable = function() {
+    const asObservable = ()=>{
         return {
             subscribe: subscribe,
             pipe: pipe
         };
     };
-    var asSafeObservable = function() {
+    const asSafeObservable = ()=>{
         return {
             subscribe: subscribe,
             pipe: pipe,
@@ -110,7 +98,7 @@ var $b32915272a56adda$export$cd5fa4ab807ba876 = function(initialValue) {
             asObservable: asObservable
         };
     };
-    var store = {
+    const store = {
         subscribe: subscribe,
         next: next,
         asObservable: asObservable,
@@ -121,65 +109,60 @@ var $b32915272a56adda$export$cd5fa4ab807ba876 = function(initialValue) {
         cancelInnerSubscription: cancelInnerSubscription,
         asSafeObservable: asSafeObservable
     };
-    function pipe() {
-        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++){
-            args[_key] = arguments[_key];
-        }
+    function pipe(...args) {
         if (!args.length) return store;
-        return args.reduceRight(function(y, f) {
-            return f(y);
-        }, store);
+        return args.reduce((y, f)=>f(y)
+        , store);
     }
     /* function lift(operator: any) {
     const c = StoreValue();
     // c.operator = operator;
   }
-  */ !$3395cd47b6305262$export$fce6876652108ab(initialValue) && next(initialValue);
+  */ !$559abe024f48324b$export$fce6876652108ab(initialValue) && next(initialValue);
     return store;
 };
 
 
-var $6d5060b31aecfd0f$exports = {};
-var $c050cba4251e1c11$exports = {};
+var $c1aeb346e685fc41$exports = {};
+var $bf3cb3dc44212e82$exports = {};
 
-$parcel$export($c050cba4251e1c11$exports, "map", function () { return $c050cba4251e1c11$export$871de8747c9eaa88; });
+$parcel$export($bf3cb3dc44212e82$exports, "map", () => $bf3cb3dc44212e82$export$871de8747c9eaa88);
 
-var $c050cba4251e1c11$export$871de8747c9eaa88 = function(opFunc) {
-    return function(source) {
-        var mapSource = $b32915272a56adda$export$cd5fa4ab807ba876();
-        var subscription = source.subscribe(function(c) {
+const $bf3cb3dc44212e82$export$871de8747c9eaa88 = (opFunc)=>{
+    return (source)=>{
+        const mapSource = $04e09b9be04c0484$export$cd5fa4ab807ba876();
+        const subscription = source.subscribe((c)=>{
             mapSource.next(opFunc(c));
         });
-        mapSource.onComplete(function() {
-            return subscription.unsubcsribe();
-        });
-        var mapSourceObservable = mapSource.asSafeObservable();
+        mapSource.onComplete(()=>subscription.unsubcsribe()
+        );
+        const mapSourceObservable = mapSource.asSafeObservable();
         mapSourceObservable.addInnerSubscriber && mapSourceObservable.addInnerSubscriber(subscription);
         return mapSourceObservable;
     };
 };
 
 
-var $560d579e97dac1b5$exports = {};
+var $454205cb45f8a865$exports = {};
 
-$parcel$export($560d579e97dac1b5$exports, "switchMap", function () { return $560d579e97dac1b5$export$9f6ea8e48bc26eab; });
+$parcel$export($454205cb45f8a865$exports, "switchMap", () => $454205cb45f8a865$export$9f6ea8e48bc26eab);
 
-var $560d579e97dac1b5$export$9f6ea8e48bc26eab = function(opFunc) {
-    return function(source) {
-        var innerValue = $b32915272a56adda$export$cd5fa4ab807ba876();
-        var sub = null;
-        var currentSub = null;
-        var addSub = function() {
-            return innerValue.addInnerSubscriber(function() {
+const $454205cb45f8a865$export$9f6ea8e48bc26eab = (opFunc)=>{
+    return (source)=>{
+        const innerValue = $04e09b9be04c0484$export$cd5fa4ab807ba876();
+        let sub = null;
+        let currentSub = null;
+        const addSub = ()=>{
+            return innerValue.addInnerSubscriber(()=>{
                 sub === null || sub === void 0 ? void 0 : sub.unsubcsribe();
             });
         };
         // const cancelPreviousSubscription = () => sub.unsubcsribe();
-        sub = source.subscribe(function(c1) {
+        sub = source.subscribe((c1)=>{
             // innerValue.isComplete && innerValue.complete();
             innerValue.cancelInnerSubscription && innerValue.cancelInnerSubscription();
             currentSub === null || currentSub === void 0 ? void 0 : currentSub.unsubcsribe();
-            currentSub = opFunc(c1).subscribe(function(c) {
+            currentSub = opFunc(c1).subscribe((c)=>{
                 innerValue.next(c);
             });
             addSub();
@@ -190,16 +173,16 @@ var $560d579e97dac1b5$export$9f6ea8e48bc26eab = function(opFunc) {
 };
 
 
-$parcel$exportWildcard($6d5060b31aecfd0f$exports, $c050cba4251e1c11$exports);
-$parcel$exportWildcard($6d5060b31aecfd0f$exports, $560d579e97dac1b5$exports);
+$parcel$exportWildcard($c1aeb346e685fc41$exports, $bf3cb3dc44212e82$exports);
+$parcel$exportWildcard($c1aeb346e685fc41$exports, $454205cb45f8a865$exports);
 
 
-var $bd9bca934db32beb$exports = {};
+var $31d3badf3cd0945e$exports = {};
 
 
-$parcel$exportWildcard(module.exports, $b32915272a56adda$exports);
-$parcel$exportWildcard(module.exports, $6d5060b31aecfd0f$exports);
-$parcel$exportWildcard(module.exports, $bd9bca934db32beb$exports);
+$parcel$exportWildcard(module.exports, $04e09b9be04c0484$exports);
+$parcel$exportWildcard(module.exports, $c1aeb346e685fc41$exports);
+$parcel$exportWildcard(module.exports, $31d3badf3cd0945e$exports);
 
 
 //# sourceMappingURL=index.js.map
